@@ -1,0 +1,36 @@
+{% extends "index-2.html" %}
+
+
+{% block content %}
+<div class="main-panel">
+    <div class="page-header">
+        <h3 class="page-title">
+            Categoy
+        </h3>
+    </div>
+
+
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{message.tags}}" {% endif %} style="list-style: none;">
+                        {{message}}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    {{form.as_p}}
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

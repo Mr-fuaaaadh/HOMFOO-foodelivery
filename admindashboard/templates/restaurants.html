@@ -1,0 +1,65 @@
+{% extends "index-2.html" %}
+
+
+{% block content %}
+<div class="main-panel">
+    <div class="page-header">
+        <h3 class="page-title">
+           New restaurants
+        </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Tables</a></li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Basic Sortable Table</h4>
+                    <p class="page-description">Add class <code>.sortable-table</code></p>
+                    <div class="row">
+                        <div class="table-sorter-wrapper col-lg-12 table-responsive">
+                            <table id="sortable-table-1" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th class="sortStyle">Name<i class="fa fa-angle-down"></i></th>
+                                        <th class="sortStyle">Email<i class="fa fa-angle-down"></i></th>
+                                        <th class="sortStyle">Phone<i class="fa fa-angle-down"></i></th>
+                                        <th class="sortStyle">Place<i class="fa fa-angle-down"></i></th>
+                                        <th class="sortStyle">Owner<i class="fa fa-angle-down"></i></th>
+                                        <th class="sortStyle">status<i class="fa fa-angle-down"></i></th>
+
+                                        <th class="sortStyle">Approved<i class="fa fa-angle-down"></i></th>
+                                        <th class="sortStyle">Rejected<i class="fa fa-angle-down"></i></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for restaurant in restaurants %}
+                                    <tr>
+                                        <td>{{restaurant.pk}}</td>
+                                        <td>{{restaurant.name}}</td>
+                                        <td>{{restaurant.email}}</td>
+                                        <td>{{restaurant.phone}}</td>
+                                        <td>{{restaurant.location}}</td>
+                                        <td>{{restaurant.owner_name}}</td>
+                                        <td style="color: crimson;">{{restaurant.status}}</td>
+                                        <td><a href="{% url 'restaurantApproval' restaurant.pk %}" class="btn btn-success"><i class="fas fa-thumbs-up"></i>Approve</a></td>
+                                        <td><a href="{% url 'restaurantRejection' restaurant.pk %}" class="btn btn-danger"><i class="fas fa-times"></i>Reject</a></td>
+
+
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
